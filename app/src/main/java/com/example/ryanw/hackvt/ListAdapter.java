@@ -12,42 +12,42 @@ import android.widget.TextView;
 import com.example.ryanw.hackvt.ParkingLot;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder>
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
 {
-    Context context;
-    ArrayList<ParkingLot> dataList = new ArrayList<>();
-    LayoutInflater inflater;
+    private List<ParkingLot> parkingLotsList;
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView name;
+
+        public ViewHolder(View view) {
+            super(view);
+            name = (TextView) view.findViewById(R.id.name);
+        }
+    }
 
 
-    public ListAdapter(Context context, ArrayList<ParkingLot> dataList)
-    {
-        this.context = context;
-        this.dataList = dataList;
-        inflater = LayoutInflater.from(context);
+    public ListAdapter(List<ParkingLot> parkingLotsList) {
+        this.parkingLotsList = parkingLotsList;
     }
 
     @Override
-    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       return null;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.parking_lot_row, parent, false);
+
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder holder, int position) {
-        holder.parking_lot.setText(dataList.get(position).getName());
-
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        ParkingLot lot = parkingLotsList.get(position);
+        holder.name.setText(lot.getName());
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
-    }
-
-    class ListViewHolder extends RecyclerView.ViewHolder {
-        TextView parking_lot;
-
-        public ListViewHolder(View itemView) {
-            super(itemView);
-        }
+        return parkingLotsList.size();
     }
 }

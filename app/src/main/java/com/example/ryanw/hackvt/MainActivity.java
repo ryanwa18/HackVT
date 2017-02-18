@@ -2,43 +2,51 @@ package com.example.ryanw.hackvt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
-    RecyclerView recyclerView;
-    DatabaseHelper dbHelper;
-    ListAdapter adapter;
+    private DatabaseHelper dbHelper;
+    private List<ParkingLot> parkingLotsList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         dbHelper = DatabaseHelper.getInstance(getApplicationContext());
         dbHelper.createParkingLots();
 
-        ArrayList<ParkingLot> lots = dbHelper.getAllParkingLots();
-        System.out.println("Name: " + lots.get(0).getName());
+        parkingLotsList = dbHelper.getAllParkingLots();
 
-        String max_latitude = String.format("%.6f", lots.get(0).getlotMaxLatitude());
-        System.out.println("Max Latitude: " + max_latitude);
-        String min_latitude = String.format("%.6f", lots.get(0).getlotMinLatitude());
-        System.out.println("Min Latitude: " + min_latitude);
-        String max_longitude = String.format("%.6f", lots.get(0).getlotMaxLongitude());
-        System.out.println("Max Longitude: " + max_latitude);
-        String min_longitude = String.format("%.6f", lots.get(0).getlotMinLongitude());
-        System.out.println("Min Longitude: " + min_longitude);
+        mAdapter = new ListAdapter(parkingLotsList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+
+        /*
+        String name = lots.get(0).getName() + "\n";
+        String max_latitude = String.format("Max Latitude: %.6f\n", lots.get(0).getlotMaxLatitude());
+        String min_latitude = String.format("Min latitude: %.6f\n", lots.get(0).getlotMinLatitude());
+        String max_longitude = String.format("Max longitude: %.6f\n", lots.get(0).getlotMaxLongitude());
+        String min_longitude = String.format("Min Longitude: %.6f\n", lots.get(0).getlotMinLongitude());
 
         System.out.println("Allowed on weekdays with pass: " + lots.get(0).getLotAllowedOnWeekdaysSP());
         System.out.println("Allowed on weekdays without pass: " + lots.get(0).getLotAllowedOnWeekdaysNSP());
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         System.out.println("Time ranges on weekdays with pass: " + lots.get(0).getLotTimesAllowedOnWeekdaysSP());
         System.out.println("Time ranges on weekdays without pass: " + lots.get(0).getLotTimesAllowedOnWeekdaysNSP());
         System.out.println("Time ranges on weekends with pass: " + lots.get(0).getLotTimesAllowedOnWeekendsSP());
-        System.out.println("Time ranges on weekends without pass: " + lots.get(0).getLotTimesAllowedOnWeekendsNSP());
+        System.out.println("Time ranges on weekdays without pass: " + lots.get(0).getLotTimesAllowedOnWeekendsNSP());*/
 
     }
 
