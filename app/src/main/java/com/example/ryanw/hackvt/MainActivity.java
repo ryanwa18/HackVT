@@ -45,8 +45,33 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Shows the dialog to check if a user has a pass or not.
         showUserPassDialog();
+        //Builds the database.
+        databaseBuilder();
         //Creation of the recycler view.
+        createRecyclerView();
+
+        dbHelper.close();
+
+    }
+
+    /**
+     * Builds the database.
+     */
+    private void databaseBuilder()
+    {
+        dbHelper = DatabaseHelper.getInstance(getApplicationContext());
+        dbHelper.createParkingLots();
+
+        parkingLotsList = dbHelper.getAllParkingLots();
+        Collections.sort(parkingLotsList);
+    }
+
+    /**
+     * Creates the recyclerview to hold the parking lots.
+     */
+    private void createRecyclerView(){
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
         recyclerView.addOnItemTouchListener(
@@ -65,39 +90,13 @@ public class MainActivity extends AppCompatActivity
                     }
                 })
         );
-
-        dbHelper = DatabaseHelper.getInstance(getApplicationContext());
-        dbHelper.createParkingLots();
-
-        parkingLotsList = dbHelper.getAllParkingLots();
-        Collections.sort(parkingLotsList);
-
         mAdapter = new ListAdapter(parkingLotsList);
         mAdapter.setHasUserPass(userHasPass);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
-        dbHelper.close();
-        /*
-        String name = lots.get(0).getName() + "\n";
-        String max_latitude = String.format("Max Latitude: %.6f\n", lots.get(0).getlotMaxLatitude());
-        String min_latitude = String.format("Min latitude: %.6f\n", lots.get(0).getlotMinLatitude());
-        String max_longitude = String.format("Max longitude: %.6f\n", lots.get(0).getlotMaxLongitude());
-        String min_longitude = String.format("Min Longitude: %.6f\n", lots.get(0).getlotMinLongitude());
-
-        System.out.println("Allowed on weekdays with pass: " + lots.get(0).getLotAllowedOnWeekdaysSP());
-        System.out.println("Allowed on weekdays without pass: " + lots.get(0).getLotAllowedOnWeekdaysNSP());
-        System.out.println("Allowed on weekends with pass: " + lots.get(0).getLotAllowedOnWeekendsSP());
-        System.out.println("Allowed on weekends without pass: " + lots.get(0).getLotAllowedOnWeekendsNSP());
-
-        System.out.println("Time ranges on weekdays with pass: " + lots.get(0).getLotTimesAllowedOnWeekdaysSP());
-        System.out.println("Time ranges on weekdays without pass: " + lots.get(0).getLotTimesAllowedOnWeekdaysNSP());
-        System.out.println("Time ranges on weekends with pass: " + lots.get(0).getLotTimesAllowedOnWeekendsSP());
-        System.out.println("Time ranges on weekdays without pass: " + lots.get(0).getLotTimesAllowedOnWeekendsNSP());*/
-
     }
-
 
     /**
      * Shows the details for the parking lot.
@@ -158,8 +157,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 
