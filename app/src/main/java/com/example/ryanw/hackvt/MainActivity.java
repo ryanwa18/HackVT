@@ -23,7 +23,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         showUserPassDialog();
         //Creation of the recycler view.
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity
         dbHelper.createParkingLots();
 
         parkingLotsList = dbHelper.getAllParkingLots();
+        Collections.sort(parkingLotsList);
 
         mAdapter = new ListAdapter(parkingLotsList);
         mAdapter.setHasUserPass(userHasPass);
@@ -103,7 +108,10 @@ public class MainActivity extends AppCompatActivity
         AlertDialog.Builder lotInformation = new AlertDialog.Builder(this);
         lotInformation.setTitle(parkingLot.getName());
         final TextView tv = (TextView) findViewById(R.id.lotInfo);
-        String info = "Latitude: " + parkingLot.getlotMaxLatitude() + "\n" + "Longitude: " + parkingLot.getlotMaxLongitude() + "\n";
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        Toast t = Toast.makeText(this, currentDateTimeString, Toast.LENGTH_SHORT);
+        t.show();
+        String info = "";
         if (userHasPass == true)
         {
             info += "Weekdays: " + parkingLot.getLotTimesAllowedOnWeekdaysSP() + "\n";
@@ -146,8 +154,6 @@ public class MainActivity extends AppCompatActivity
         });
         builder.show();
     }
-
-
 
     @Override
     public void onBackPressed() {

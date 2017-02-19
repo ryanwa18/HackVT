@@ -3,7 +3,7 @@ package com.example.ryanw.hackvt;
 /**
  * Created by edu-2_000 on 2/17/2017.
  */
-public class ParkingLot
+public class ParkingLot implements Comparable<ParkingLot>
 {
     private String lotID;
     private String lotName;
@@ -172,6 +172,10 @@ public class ParkingLot
     public float getlotMaxLatitude()
     {
         return lotMaxLatitude;
+    }
+
+    public int compareTo(ParkingLot other) {
+        return lotName.compareTo(other.getName());
     }
 
     /*public void setPicture(Blob picture)

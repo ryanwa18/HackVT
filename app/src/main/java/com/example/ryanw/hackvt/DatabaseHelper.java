@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String MIN_LATITUDE = "minLatitude";
     private static final String MIN_LONGITUDE = "minLongitude";
     private static final String TIME_RANGE_WITH_PASS_WEEKDAY = "timeRangeWithPassWeekday";
-    private static final String TIME_RANGE_WITHOUT_PASS_WEEKDAY= "timeRangeWithoutPassWeekday";
+    private static final String TIME_RANGE_WITHOUT_PASS_WEEKDAY = "timeRangeWithoutPassWeekday";
     private static final String TIME_RANGE_WITH_PASS_WEEKEND = "timeRangeWithPassWeekend";
     private static final String TIME_RANGE_WITHOUT_PASS_WEEKEND = "timeRangeWithoutPassWeekend";
     private static final String ALLOWED_ON_WEEKDAYS_WITH_PASS = "allowedOnWeekdaysWithPass";
@@ -93,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Inserts parking lot objects into the table.
+     *
      * @param parkingLot the parking lot to be inserted.
      * @throws SQLException if table is not found.
      */
@@ -157,8 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         } catch (Exception e) {
             Log.d(TAG, "Error while trying to get posts from database");
-        }
-        finally {
+        } finally {
             cursor.close();
             db.close();
         }
@@ -170,8 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Creation of different parking lot objects.
      */
-    public void createParkingLots()
-    {
+    public void createParkingLots() {
         //Squires Parking Lot.
         ParkingLot squires = new ParkingLot();
         squires.setName("Squires Parking Lot");
@@ -284,6 +283,132 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //bballPracExt.setPicture(//Blob file);
         parkingLots.add(bballPracFac);
 
+        //Prices Fork 5 Parking Lot.
+        ParkingLot pricesFork5 = new ParkingLot();
+        pricesFork5.setName("Prices Fork 5 Parking Lot");
+        pricesFork5.setLotAllowedOnWeekdaysSP("true");
+        pricesFork5.setLotAllowedOnWeekdaysNSP("true");
+        pricesFork5.setLotAllowedOnWeekendsSP("true");
+        pricesFork5.setLotAllowedOnWeekendsNSP("true");
+        pricesFork5.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        pricesFork5.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        pricesFork5.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        pricesFork5.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        pricesFork5.setlotMinLongitude(-80.427245f);
+        pricesFork5.setlotMaxLongitude(-80.426824f);
+        pricesFork5.setlotMinLatitude(37.231300f);
+        pricesFork5.setlotMaxLatitude(37.232340f);
+        //pricesFork5.setPicture(//Blob file);
+        parkingLots.add(pricesFork5);
+
+        //Prices Fork 6 Parking Lot.
+        ParkingLot pricesFork6 = new ParkingLot();
+        pricesFork6.setName("Prices Fork 6 Parking Lot");
+        pricesFork6.setLotAllowedOnWeekdaysSP("true");
+        pricesFork6.setLotAllowedOnWeekdaysNSP("true");
+        pricesFork6.setLotAllowedOnWeekendsSP("true");
+        pricesFork6.setLotAllowedOnWeekendsNSP("true");
+        pricesFork6.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        pricesFork6.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        pricesFork6.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        pricesFork6.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        pricesFork6.setlotMinLongitude(-80.42788f);
+        pricesFork6.setlotMaxLongitude(-80.427704f);
+        pricesFork6.setlotMinLatitude(37.229481f);
+        pricesFork6.setlotMaxLatitude(37.23178f);
+        //pricesFork6.setPicture(//Blob file);
+        parkingLots.add(pricesFork6);
+
+        //Duck Pond Road Parking Lot.
+        ParkingLot duckPondRd = new ParkingLot();
+        duckPondRd.setName("Duck Pond Road Parking Lot");
+        duckPondRd.setLotAllowedOnWeekdaysSP("true");
+        duckPondRd.setLotAllowedOnWeekdaysNSP("true");
+        duckPondRd.setLotAllowedOnWeekendsSP("true");
+        duckPondRd.setLotAllowedOnWeekendsNSP("true");
+        duckPondRd.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        duckPondRd.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        duckPondRd.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        duckPondRd.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        duckPondRd.setlotMinLongitude(-80.430871f);
+        duckPondRd.setlotMaxLongitude(-80.426051f);
+        duckPondRd.setlotMinLatitude(37.219227f);
+        duckPondRd.setlotMaxLatitude(37.221598f);
+        //duckPondRd.setPicture(//Blob file);
+        parkingLots.add(duckPondRd);
+
+        //Litton Reaves Extension Parking Lot C/G Section.
+        ParkingLot LttnRvsExtCG = new ParkingLot();
+        LttnRvsExtCG.setName("Litton Reaves Extension Parking Lot C/G Section");
+        LttnRvsExtCG.setLotAllowedOnWeekdaysSP("true");
+        LttnRvsExtCG.setLotAllowedOnWeekdaysNSP("true");
+        LttnRvsExtCG.setLotAllowedOnWeekendsSP("true");
+        LttnRvsExtCG.setLotAllowedOnWeekendsNSP("true");
+        LttnRvsExtCG.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        LttnRvsExtCG.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        LttnRvsExtCG.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        LttnRvsExtCG.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        LttnRvsExtCG.setlotMinLongitude(-80.427007f);
+        LttnRvsExtCG.setlotMaxLongitude(-80.426372f);
+        LttnRvsExtCG.setlotMinLatitude(37.222632f);
+        LttnRvsExtCG.setlotMaxLatitude(37.223067f);
+        //LttnRvsExtCG.setPicture(//Blob file);
+        parkingLots.add(LttnRvsExtCG);
+
+        //Litton Reaves Extension Parking Lot F/S/V Section.
+        ParkingLot LttnRvsExtFSV = new ParkingLot();
+        LttnRvsExtFSV.setName("Litton Reaves Extension Parking Lot F/S/V Section");
+        LttnRvsExtFSV.setLotAllowedOnWeekdaysSP("true");
+        LttnRvsExtFSV.setLotAllowedOnWeekdaysNSP("true");
+        LttnRvsExtFSV.setLotAllowedOnWeekendsSP("true");
+        LttnRvsExtFSV.setLotAllowedOnWeekendsNSP("true");
+        LttnRvsExtFSV.setLotTimesAllowedOnWeekdaysSP("5pm - 7pm");
+        LttnRvsExtFSV.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        LttnRvsExtFSV.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        LttnRvsExtFSV.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        LttnRvsExtFSV.setlotMinLongitude(-80.426387f);
+        LttnRvsExtFSV.setlotMaxLongitude(-80.425545f);
+        LttnRvsExtFSV.setlotMinLatitude(37.222804f);
+        LttnRvsExtFSV.setlotMaxLatitude(37.223177f);
+        //LttnRvsExtFSV.setPicture(//Blob file);
+        parkingLots.add(LttnRvsExtFSV);
+
+        //Litton Reaves Parking Lot C/G Section.
+        ParkingLot LttnRvsLotCG = new ParkingLot();
+        LttnRvsLotCG.setName("Litton Reaves Parking Lot C/G Section");
+        LttnRvsLotCG.setLotAllowedOnWeekdaysSP("true");
+        LttnRvsLotCG.setLotAllowedOnWeekdaysNSP("true");
+        LttnRvsLotCG.setLotAllowedOnWeekendsSP("true");
+        LttnRvsLotCG.setLotAllowedOnWeekendsNSP("true");
+        LttnRvsLotCG.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        LttnRvsLotCG.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        LttnRvsLotCG.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        LttnRvsLotCG.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        LttnRvsLotCG.setlotMinLongitude(-80.426921f);
+        LttnRvsLotCG.setlotMaxLongitude(-80.426276f);
+        LttnRvsLotCG.setlotMinLatitude(37.221292f);
+        LttnRvsLotCG.setlotMaxLatitude(37.223121f);
+        //LttnRvsLotCG.setPicture(//Blob file);
+        parkingLots.add(LttnRvsLotCG);
+
+        //Litton Reaves Parking Lot F/S/V Section.
+        ParkingLot LttnRvsLotFSV = new ParkingLot();
+        LttnRvsLotFSV.setName("Litton Reaves Parking Lot F/S/V Section");
+        LttnRvsLotFSV.setLotAllowedOnWeekdaysSP("true");
+        LttnRvsLotFSV.setLotAllowedOnWeekdaysNSP("true");
+        LttnRvsLotFSV.setLotAllowedOnWeekendsSP("true");
+        LttnRvsLotFSV.setLotAllowedOnWeekendsNSP("true");
+        LttnRvsLotFSV.setLotTimesAllowedOnWeekdaysSP("5pm - 7am");
+        LttnRvsLotFSV.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        LttnRvsLotFSV.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        LttnRvsLotFSV.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+        LttnRvsLotFSV.setlotMinLongitude(-80.425942f);
+        LttnRvsLotFSV.setlotMaxLongitude(-80.425484f);
+        LttnRvsLotFSV.setlotMinLatitude(37.220905f);
+        LttnRvsLotFSV.setlotMaxLatitude(37.222153f);
+        //LttnRvsLotFSV.setPicture(//Blob file);
+        parkingLots.add(LttnRvsLotFSV);
+
         //Insert all parking lots.
         try {
             insertParkingLots(squires);
@@ -292,15 +417,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             insertParkingLots(dietrick);
             insertParkingLots(bballPracExt);
             insertParkingLots(bballPracFac);
+            insertParkingLots(pricesFork5);
+            insertParkingLots(pricesFork6);
+            insertParkingLots(duckPondRd);
+            insertParkingLots(LttnRvsExtCG);
+            insertParkingLots(LttnRvsExtFSV);
+            insertParkingLots(LttnRvsLotCG);
+            insertParkingLots(LttnRvsLotFSV);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
-
     }
-
-
-
 }
 
