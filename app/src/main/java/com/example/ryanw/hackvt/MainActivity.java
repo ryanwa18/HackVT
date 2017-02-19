@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        showUserPassDialog();
         //Creation of the recycler view.
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.addOnItemTouchListener(
@@ -132,7 +133,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which) {
                 // Do nothing but close the dialog
                 userHasPass = true;
-                dialog.dismiss();
             }
         });
 
@@ -142,12 +142,9 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which) {
 
                 userHasPass = false;
-                dialog.dismiss();
             }
         });
-
-        AlertDialog alert = builder.create();
-        alert.show();
+        builder.show();
     }
 
 
