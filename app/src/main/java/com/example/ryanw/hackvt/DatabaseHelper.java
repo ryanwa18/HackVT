@@ -119,7 +119,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         database.insertOrThrow(PARKING_LOTS, null, values);
-        database.setTransactionSuccessful();
     }
 
      /*
@@ -158,10 +157,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         } catch (Exception e) {
             Log.d(TAG, "Error while trying to get posts from database");
-        } finally {
-            if (cursor != null && !cursor.isClosed()) {
-                cursor.close();
-            }
+        }
+        finally {
+            cursor.close();
+            db.close();
         }
 
         return parkingLotDetails;
@@ -190,12 +189,118 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         squires.setlotMinLatitude(37.229146f);
         squires.setlotMaxLatitude(37.229218f);
         //squires.setPicture(//Blob file);
+
+        parkingLots.add(squires);
+
+        //Surge Parking Lot.
+        ParkingLot surge = new ParkingLot();
+        surge.setName("Surge Parking Lot");
+        surge.setLotAllowedOnWeekdaysSP("true");
+        surge.setLotAllowedOnWeekdaysNSP("true");
+        surge.setLotAllowedOnWeekendsSP("true");
+        surge.setLotAllowedOnWeekendsNSP("true");
+        surge.setLotTimesAllowedOnWeekdaysSP("12am - 11:59pm");
+        surge.setlotTimesAllowedOnWeekdaysNSP("5pm - 7am");
+        surge.setLotTimesAllowedOnWeekendsSP("12am - 11:59pm");
+        surge.setlotTimesAllowedOnWeekendsNSP("12am - 11:59pm");
+
+        surge.setlotMinLongitude(-80.423878f);
+        surge.setlotMaxLongitude(-80.422799f);
+        surge.setlotMinLatitude(37.232188f);
+        surge.setlotMaxLatitude(37.233085f);
+        //surge.setPicture(//Blob file);
+        parkingLots.add(surge);
+
+        //Owens Parking Lot.
+        ParkingLot owens = new ParkingLot();
+        owens.setName("Owens Parking Lot");
+        owens.setLotAllowedOnWeekdaysSP("false");
+        owens.setLotAllowedOnWeekdaysNSP("false");
+        owens.setLotAllowedOnWeekendsSP("false");
+        owens.setLotAllowedOnWeekendsNSP("false");
+        owens.setLotTimesAllowedOnWeekdaysSP("Never");
+        owens.setlotTimesAllowedOnWeekdaysNSP("Never");
+        owens.setLotTimesAllowedOnWeekendsSP("Never");
+        owens.setlotTimesAllowedOnWeekendsNSP("Never");
+
+        owens.setlotMinLongitude(-80.419026f);
+        owens.setlotMaxLongitude(-80.417984f);
+        owens.setlotMinLatitude(37.226169f);
+        owens.setlotMaxLatitude(37.226618f);
+        //owens.setPicture(//Blob file);
+        parkingLots.add(owens);
+
+        //Dietrick Hall Parking Lot.
+        ParkingLot dietrick = new ParkingLot();
+        dietrick.setName("Dietrick Parking Lot");
+        dietrick.setLotAllowedOnWeekdaysSP("false");
+        dietrick.setLotAllowedOnWeekdaysNSP("false");
+        dietrick.setLotAllowedOnWeekendsSP("false");
+        dietrick.setLotAllowedOnWeekendsNSP("false");
+        dietrick.setLotTimesAllowedOnWeekdaysSP("Never");
+        dietrick.setlotTimesAllowedOnWeekdaysNSP("Never");
+        dietrick.setLotTimesAllowedOnWeekendsSP("Never");
+        dietrick.setlotTimesAllowedOnWeekendsNSP("Never");
+        dietrick.setlotMinLongitude(-80.421681f);
+        dietrick.setlotMaxLongitude(-80.42113f);
+        dietrick.setlotMinLatitude(37.224418f);
+        dietrick.setlotMaxLatitude(37.225174f);
+        //dietrick.setPicture(//Blob file);
+        parkingLots.add(dietrick);
+
+        //Basketball Practice Extension Parking Lot.
+        ParkingLot bballPracExt = new ParkingLot();
+        bballPracExt.setName("Basketball Practice Extension Parking Lot");
+        bballPracExt.setLotAllowedOnWeekdaysSP("false");
+        bballPracExt.setLotAllowedOnWeekdaysNSP("false");
+        bballPracExt.setLotAllowedOnWeekendsSP("false");
+        bballPracExt.setLotAllowedOnWeekendsNSP("false");
+        bballPracExt.setLotTimesAllowedOnWeekdaysSP("Never");
+        bballPracExt.setlotTimesAllowedOnWeekdaysNSP("Never");
+        bballPracExt.setLotTimesAllowedOnWeekendsSP("Never");
+        bballPracExt.setlotTimesAllowedOnWeekendsNSP("Never");
+        bballPracExt.setlotMinLongitude(-80.417958f);
+        bballPracExt.setlotMaxLongitude(-80.417487f);
+        bballPracExt.setlotMinLatitude(37.223736f);
+        bballPracExt.setlotMaxLatitude(37.223888f);
+        //bballPracExt.setPicture(//Blob file);
+        parkingLots.add(bballPracExt);
+
+        //Basketball Practice Facility Parking Lot.
+        ParkingLot bballPracFac = new ParkingLot();
+        bballPracFac.setName("Basketball Practice Facility Parking Lot");
+        bballPracFac.setLotAllowedOnWeekdaysSP("false");
+        bballPracFac.setLotAllowedOnWeekdaysNSP("false");
+        bballPracFac.setLotAllowedOnWeekendsSP("false");
+        bballPracFac.setLotAllowedOnWeekendsNSP("false");
+        bballPracFac.setLotTimesAllowedOnWeekdaysSP("Never");
+        bballPracFac.setlotTimesAllowedOnWeekdaysNSP("Never");
+        bballPracFac.setLotTimesAllowedOnWeekendsSP("Never");
+        bballPracFac.setlotTimesAllowedOnWeekendsNSP("Never");
+        bballPracFac.setlotMinLongitude(-80.418844f);
+        bballPracFac.setlotMaxLongitude(-80.418274f);
+        bballPracFac.setlotMinLatitude(37.223086f);
+        bballPracFac.setlotMaxLatitude(37.223304f);
+        //bballPracExt.setPicture(//Blob file);
+        parkingLots.add(bballPracFac);
+
+        //Insert all parking lots.
         try {
             insertParkingLots(squires);
+            insertParkingLots(surge);
+            insertParkingLots(owens);
+            insertParkingLots(dietrick);
+            insertParkingLots(bballPracExt);
+            insertParkingLots(bballPracFac);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        parkingLots.add(squires);
+
+
+
     }
+
+
+
 }
 
